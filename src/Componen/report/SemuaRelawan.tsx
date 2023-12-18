@@ -20,6 +20,7 @@ interface rows {
     no: number,
     nama: string,
     alamat: string,
+    no_handphone: string,
     jumlah_pendukung: number
 }
 interface dataTable {
@@ -39,6 +40,7 @@ const Semua_relawan: React.FC = () => {
                     datax.push({
                         no: index + 1,
                         nama: list.nama,
+                        no_handphone: list.no_handphone,
                         alamat: list.alamat,
                         jumlah_pendukung: list.jumlah_pendukung,
                     })
