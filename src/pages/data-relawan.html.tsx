@@ -19,6 +19,8 @@ interface DataRelawan {
     jumlah_pendukung: string,
 }
 const Data_relawan: React.FC = (pr) => {
+
+    const [cari, setCari] = useState<any>('');
     const { updateMenu } = useMyContext();
     const navigator: NextRouter = useRouter();
     const [edit, setEdit] = useState<any>();
@@ -65,9 +67,26 @@ const Data_relawan: React.FC = (pr) => {
             </div>
             <div className="card">
                 <div className="card-body">
-                    <button onClick={() => {
-                        navigator.push("/tambah-data-relawan.html");
-                    }} className="btn btn-danger">Tambah Data</button>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <button onClick={() => {
+                                        navigator.push("/tambah-data-relawan.html");
+                                    }} className="btn btn-danger">Tambah Data</button>
+                                </td>
+                                <td width={"100px"}></td>
+                                <td>
+                                    Cari Data <input onChange={(e) => {
+                                        setCari(e.target.value);
+                                    }} placeholder="Masukkan pencarian" type="search" className="form-control" />
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+
                     <div style={{ textAlign: "right", color: "#8431FD" }}>Jumlah Data : {data?.length}</div>
                     <table className="table">
                         <thead>
@@ -88,7 +107,7 @@ const Data_relawan: React.FC = (pr) => {
                                     nama={list.nama}
                                     alamat={list.alamat}
                                     no_handphone={list.no_handphone}
-                                /> : <tr key={`ind${index}`}>
+                                /> : list.nama.toLocaleLowerCase().includes(String(cari).toLocaleLowerCase()) ? <tr key={`ind${index}`}>
                                     <td>{index + 1}</td>
                                     <td>{list.nama}
                                         <div style={{ color: "blue" }}>Jumlah Pendukung : {list.jumlah_pendukung} </div>
@@ -108,7 +127,10 @@ const Data_relawan: React.FC = (pr) => {
                                             navigator.push("/lihat-pendukung-relawan.html?id_relawan=" + list.id_relawan)
                                         }} className="btn btn-sm btn-primary">Lihat Data Pendukung</button>
                                     </td>
-                                </tr>
+                                </tr> :
+                                    <></>
+
+
                             ))}
 
                         </tbody>

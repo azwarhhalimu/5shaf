@@ -1,6 +1,6 @@
 import baseUrl from "@/config";
 import axios, { AxiosResponse } from "axios";
-import { MDBDataTable, MDBDataTableV5 } from "mdbreact";
+import { MDBDataTableV5 } from "mdbreact";
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import queryString from "query-string";
