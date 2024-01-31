@@ -3,10 +3,29 @@ import baseUrl from "@/config";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import styles from '@/styles/Home.module.css';
+import LoadingSpinner from "@/Componen/LoadingSpinner";
 
+interface itPendukung {
+    id_pendukung: string;
+    nama: string;
+    nik: string;
+    jenis_kelamin: string;
+    usia: string;
+    rt_rw: string;
+    kelurahan: string;
+    relawan: {
+        no: number;
+        id_relawan: string;
+        nama: string;
+        no_handphone: string;
+        alamat: string;
+    };
+    tps: number;
+}
 const Berdasarkan_nama: React.FC = () => {
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<itPendukung[]>([]);
+    const [search, setSearch] = useState("");
     const _cekData = () => {
         setLoading(true);
         axios.get(baseUrl('duplikat-data/semua-data'))
@@ -31,8 +50,16 @@ const Berdasarkan_nama: React.FC = () => {
             <Height height={20} />
             {!loading ? <button onClick={() => {
                 _cekData();
-            }} className=" btn btn-primary">Analisis Kesamaan Nama</button> : "Mengambil data..."
+            }} className=" btn btn-primary">Analisis Kesamaan Nama</button> : <><LoadingSpinner /> Loading data...</>
             }
+            <Height height={20} />
+
+            <div style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ paddingRight: "20px", marginRight: "20px" }}>Cari  :  </span><input style={{ width: "300px" }} type="search" onChange={(e) => {
+                    setSearch(e.target.value);
+                }} placeholder="Cari data..." className="form-control" />
+            </div>
+
             <Height height={20} />
             <table className=" table table-bordered table-strip">
                 <tr style={{ fontWeight: "bold" }}>
@@ -48,7 +75,7 @@ const Berdasarkan_nama: React.FC = () => {
                     <td>TPS</td>
                 </tr>
                 {data.map((list, index) => (
-                    <tr key={`df${index}`} {...(index % 2 == 0) ? { style: { background: "#F2FFE9" } } : { style: { background: "#F5EEC8" } }}>
+                    list.nama.toLowerCase().includes((search.toLocaleLowerCase())) ? <tr key={`df${index}`} {...(index % 2 == 0) ? { style: { background: "#F2FFE9" } } : { style: { background: "#F5EEC8" } }}>
                         <td>{index + 1}</td>
                         <td>{list['nama']}</td>
                         <td>{list['nik']}</td>
@@ -63,7 +90,7 @@ const Berdasarkan_nama: React.FC = () => {
                         </td>
                         <td>{list['kelurahan']}</td>
                         <td>{list['tps']}</td>
-                    </tr>
+                    </tr> : <></>
                 ))}
             </table>
         </div>
