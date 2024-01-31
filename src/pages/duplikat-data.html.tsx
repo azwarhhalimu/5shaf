@@ -29,9 +29,7 @@ const Duplikat_data: React.FC = () => {
                         <Tab eventKey="home" title="Berdasarkan Kesamaan Nama dan Kelurahan">
                             <Berdasarkan_nama />
                         </Tab>
-                        <Tab eventKey="profile" title="Persuku Kata Nama">
-                            Tab content for Profile
-                        </Tab>
+
 
                     </Tabs>
                 </div>
