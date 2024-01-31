@@ -71,6 +71,11 @@ const Lihat_pendukung_relawan: React.FC<inProps> = (props) => {
                         <span className="badge badge-primary" style={{ fontSize: "15px" }}>Jumlah Data :{data?.length} </span>
                         {" "}
                         <span className="badge badge-success" style={{ fontSize: "15px" }}>Relawan :{relawan?.nama} </span>
+                        <div style={{ height: "20px" }}></div>
+                        <span>
+                            <input placeholder="Cari Data..." style={{ width: "300px" }} type="search" className="form-control" />
+                        </span>
+                        <br />
                         <table className="table">
                             <thead>
                                 <tr style={{ fontWeight: "bold", color: "blue" }}>

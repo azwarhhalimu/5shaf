@@ -60,6 +60,12 @@ const Header: React.FC = () => {
                 </Link>
             </li>
             <li className="nav-item">
+                <Link {...menu == "duplikat-data" && { style: { color: "red", } }} className="nav-link" href="/duplikat-data.html">
+                    <i className="fas fa-fw fa-palette" />
+                    <span>Analisi Duplikat Data</span>
+                </Link>
+            </li>
+            <li className="nav-item">
                 <Link className="nav-link" onClick={() => {
 
                     const x = window.confirm("Apakah anda ingin ingin logout dari applikasi ini?");
