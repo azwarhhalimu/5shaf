@@ -24,7 +24,7 @@ const Partai: React.FC = () => {
     const _getPartai = () => {
         axios.get(baseUrl('partai'))
             .then((respon: AxiosResponse<any, any>) => {
-                setData(respon.data.data);
+                setData(respon.data.data.list);
             })
     }
     const _simpanPartai = (e: any) => {
@@ -65,12 +65,12 @@ const Partai: React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.map((list, index) => (
+                                    {data?.map((list, index) => (
                                         <tr key={`${index}`}>
                                             <td>{index + 1}</td>
                                             <td>{list.partai}</td>
                                             <td>{
-                                                list.caleg.map((clist, i) => (
+                                                list.caleg?.map((clist, i) => (
                                                     <div key={`${clist.id_caleg}`}>{i + 1} {clist.nama}</div>
                                                 ))
                                             }</td>

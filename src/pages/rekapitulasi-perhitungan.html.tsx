@@ -21,6 +21,7 @@ const Rekapitulas_perhitungan: React.FC = () => {
             suara: number,
         }[]
     }[]>([]);
+
     const [data, setData] = useState<{
         id_partai: string;
         partai: string;
@@ -31,11 +32,12 @@ const Rekapitulas_perhitungan: React.FC = () => {
             total_suara: number
         }[]
     }[]>([]);
+
     const _getPartai = () => {
         axios.get(baseUrl('partai'))
             .then((respon: AxiosResponse<any, any>) => {
-                setData(respon.data.data);
-                setEdata(respon.data.data);
+                setData(respon.data.data.list);
+                setEdata(respon.data.data.list);
 
             })
     }
@@ -70,7 +72,7 @@ const Rekapitulas_perhitungan: React.FC = () => {
                     <h3>Perhitungan Suara </h3>
                     <div className="row">
                         {
-                            data.map((list, index) => (
+                            data?.map((list, index) => (
                                 <div style={{}} key={`${index}`} className="col-lg-6">
                                     <div className="card">
                                         <div className="card-body">
