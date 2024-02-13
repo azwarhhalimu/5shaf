@@ -136,8 +136,8 @@ const Saksi: React.FC = () => {
     const _getPartai = () => {
         axios.get(baseUrl('partai'))
             .then((respon: AxiosResponse<any, any>) => {
-                setData(respon.data.data);
-                setEdata(respon.data.data);
+                setDatax(respon.data.data.list);
+                setEdata(respon.data.data.list);
 
             })
     }
@@ -168,7 +168,7 @@ const Saksi: React.FC = () => {
             id_tps: id[3],
             id_kelurahan: id[2],
         })).then((respon: AxiosResponse<any, any>) => {
-            setList_suara(respon.data.data.list);
+            setList_suara(respon.data.data);
         })
     }
 
