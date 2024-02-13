@@ -19,7 +19,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
   if (typeof window !== "undefined") {
-    if (window.location.pathname.split('/')[1] == "login.html") {
+    if (window.location.pathname.split('/')[1] == "pemilu") {
+      return <Component {...pageProps} />
+    } else if (window.location.pathname.split('/')[1] == "login.html") {
       console.log('c');
       return <Login>
         <NextNProgress color="#FF0009" startPosition={0.3} stopDelayMs={200} height={6} showOnShallow={false} />

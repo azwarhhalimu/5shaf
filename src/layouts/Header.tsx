@@ -60,6 +60,24 @@ const Header: React.FC = () => {
                 </Link>
             </li>
             <li className="nav-item">
+                <Link {...menu == "saksi" && { style: { color: "red", } }} className="nav-link" href="/saksi-tps.html">
+                    <i className="fas fa-fw fa-palette" />
+                    <span>Saksi TPS</span>
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link {...menu == "saksi" && { style: { color: "red", } }} className="nav-link" href="/partai.html">
+                    <i className="fas fa-fw fa-palette" />
+                    <span>Partai</span>
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link {...menu == "saksi" && { style: { color: "red", } }} className="nav-link" href="/rekapitulasi-perhitungan.html">
+                    <i className="fas fa-fw fa-palette" />
+                    <span>Rekapitulasi Perhitungan</span>
+                </Link>
+            </li>
+            <li className="nav-item">
                 <Link {...menu == "duplikat-data" && { style: { color: "red", } }} className="nav-link" href="/duplikat-data.html">
                     <i className="fas fa-fw fa-palette" />
                     <span>Analisi Duplikat Data</span>
