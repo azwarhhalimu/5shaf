@@ -85,7 +85,7 @@ const Saksi: React.FC = () => {
     const _getSaksi = () => {
         axios.get(baseUrl('saksi'))
             .then((respon: AxiosResponse<any, any>) => {
-                setDataSaksi(respon.data.data);
+                setDataSaksi(respon.data.data.list);
             })
     }
     const _simpan_saksi = (e: any) => {
