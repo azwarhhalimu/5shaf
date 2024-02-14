@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const Quick_count: React.FC = () => {
     const [total, setTotal] = useState(0);
+    const [reload, setReload] = useState(0);
     const [data, setData] = useState<{
         id_partai: string;
         partai: string;
@@ -24,7 +25,11 @@ const Quick_count: React.FC = () => {
     }
     useEffect(() => {
         _getPartai();
-    }, [])
+    }, [reload]);
+
+    const interval = setInterval(() => {
+        setReload(reload + 1);
+    }, 30000);
     return (<>
         <div style={{ height: "99vh", }}>
             <div style={{ padding: "30px" }}>
