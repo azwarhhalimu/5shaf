@@ -9,13 +9,13 @@ import NextNProgress from 'nextjs-progressbar';
 import LoginComponen from '@/layouts/LoginComponen';
 import dynamic from 'next/dynamic';
 import { MyProvider } from '@/interface/myContext';
+import { useEffect, useState } from 'react';
 
 
 
 const Admin = dynamic(() => import('@/layouts/Mainlayout'), { ssr: false })
 const Login = dynamic(() => import('@/layouts/LoginComponen'), { ssr: false })
 export default function App({ Component, pageProps }: AppProps) {
-
 
 
   if (typeof window !== "undefined") {

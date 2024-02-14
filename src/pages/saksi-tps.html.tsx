@@ -1,3 +1,4 @@
+import Height from "@/Componen/Height";
 import baseUrl from "@/config";
 import axios, { Axios, AxiosResponse } from "axios";
 import { useRouter } from "next/router";
@@ -10,9 +11,11 @@ interface cData {
         id_tps: string;
         tps: string;
         total_saksi: number;
+        isData: string;
     }[];
 }
 const Saksi: React.FC = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [show, setShow] = useState(false);
     const route = useRouter();
 
@@ -20,9 +23,11 @@ const Saksi: React.FC = () => {
     const handleShow = () => setShow(true);
     const [data, setData] = useState<cData[]>([]);
     const _getData = () => {
+        setIsLoading(true);
         axios.get(baseUrl('saksi/kelurahan-tps'))
             .then((respon: AxiosResponse<any, any>) => {
                 setData(respon.data.data);
+                setIsLoading(false);
             })
     }
     useEffect(() => {
@@ -57,7 +62,7 @@ const Saksi: React.FC = () => {
                                             <td>{index + 1}</td><td>{list.kelurahan}</td>
                                             <td>
                                                 {list.tps.map((data, index) => (
-                                                    <button key={`${index}`} className={`btn ${data.total_saksi == 0 ? "btn-danger" : "btn-primary"}`}
+                                                    <button key={`${index}`} className={`btn ${data.isData != "ADA" ? "btn-danger" : "btn-success"}`}
                                                         onClick={() => {
                                                             route.push(`/saksi/${list.id_kelurahan}/${data.id_tps}/tps.html`)
                                                         }}
@@ -71,6 +76,10 @@ const Saksi: React.FC = () => {
 
                                 </tbody>
                             </table>
+                            {isLoading && (<center>
+                                <Height height={40} />
+                                Mengambil data....
+                            </center>)}
                         </div>
                     </div>
                 </div>

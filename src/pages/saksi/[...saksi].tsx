@@ -24,6 +24,8 @@ interface cdata {
 }
 const Saksi: React.FC = () => {
 
+    const [loadingData, setLoadingData] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const route = useRouter()
 
     const [kelTps, setKelTps] = useState<{ tps: string, kelurahan: string }>();
@@ -89,6 +91,7 @@ const Saksi: React.FC = () => {
             })
     }
     const _simpan_saksi = (e: any) => {
+
         e.preventDefault();
         axios.post(baseUrl('saksi/'),
             queryString.stringify({
@@ -143,6 +146,7 @@ const Saksi: React.FC = () => {
     }
 
     const _updateSuara = (e: any) => {
+        setLoading(true);
         e.preventDefault();
         axios.post(baseUrl('partai/update-suara'),
             queryString.stringify({
@@ -155,6 +159,7 @@ const Saksi: React.FC = () => {
                 if (respon.data.status == "ok") {
                     setReload(reload + 1);
                     handleClosex();
+                    setLoading(false);
                 }
             });
         ;
@@ -164,11 +169,13 @@ const Saksi: React.FC = () => {
         suara: any;
     }[]>([]);
     const _getSuara = () => {
+        setLoadingData(true);
         axios.post(baseUrl('partai/get-suara'), queryString.stringify({
             id_tps: id[3],
             id_kelurahan: id[2],
         })).then((respon: AxiosResponse<any, any>) => {
             setList_suara(respon.data.data);
+            setLoadingData(false);
         })
     }
 
@@ -270,7 +277,11 @@ const Saksi: React.FC = () => {
                                     ))}
 
                                 </tbody>
+
                             </table>
+                            {loadingData && (<div style={{ textAlign: "center" }}>
+                                <Height height={20} />
+                                Loading data...</div>)}
                         </div>
                     </div>
                 </div>
@@ -432,9 +443,10 @@ const Saksi: React.FC = () => {
                             </div>
                         ))
                     }
-                    <button className="btn btn-success">
-                        Simapn
-                    </button>
+                    {loading ? "Loading" : <button className="btn btn-success">
+                        Simpan
+                    </button>}
+
                 </form>
             </Modal.Body>
 

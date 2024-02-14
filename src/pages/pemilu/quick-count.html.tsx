@@ -72,9 +72,7 @@ const Quick_count: React.FC = () => {
                         })}
 
                 </div>
-
             </div>
-
         </div>
 
         <div style={{
