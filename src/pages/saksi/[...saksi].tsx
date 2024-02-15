@@ -27,6 +27,7 @@ const Saksi: React.FC = () => {
     const [loadingData, setLoadingData] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const route = useRouter()
+    const [loadingCeklist, setLoadingCeklist] = useState(false);
 
     const [kelTps, setKelTps] = useState<{ tps: string, kelurahan: string, check: string; }>();
     const [data, setData] = useState<cdata[]>([]);
@@ -65,13 +66,13 @@ const Saksi: React.FC = () => {
 
     }
     const _checklist = () => {
+        setLoadingCeklist(true)
         axios.post(baseUrl('saksi/update-checklist'), queryString.stringify({
             id_tps: id[3],
         }))
             .then((respon: AxiosResponse<any, any>) => {
-                if (respon.data.status == "ok") {
-                    alert('Data berhasil di checklist');
-                }
+                setLoadingCeklist(false);
+                alert('Data berhasil di checklist');
             })
     }
     const _deleteData = (id: string) => {
@@ -273,9 +274,10 @@ const Saksi: React.FC = () => {
                         handleShowx();
                     }} className="btn btn-primary">Update Suara</button>
                     {" "}
-                    <button {...(kelTps?.check == "Y" && { disabled: true })} onClick={() => {
+                    {loadingCeklist ? "Loading" : <button {...(kelTps?.check == "Y" && { disabled: true })} onClick={() => {
                         _checklist();
-                    }} className=" btn btn-success"><i className="fa fa-check" /> Ceklist</button>
+                    }} className=" btn btn-success"><i className="fa fa-check" /> Ceklist</button>}
+
                     <Height height={20} />
                     <div className="card">
                         <div className="card-body">

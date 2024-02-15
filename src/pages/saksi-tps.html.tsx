@@ -17,6 +17,7 @@ interface cData {
 }
 const Saksi: React.FC = () => {
     const [totalTps, setTotalTps] = useState<number>(0);
+
     const [isLoading, setIsLoading] = useState(false);
     const [show, setShow] = useState(false);
     const route = useRouter();
