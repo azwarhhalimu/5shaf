@@ -12,9 +12,11 @@ interface cData {
         tps: string;
         total_saksi: number;
         isData: string;
+        checklist: string;
     }[];
 }
 const Saksi: React.FC = () => {
+    const [totalTps, setTotalTps] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
     const [show, setShow] = useState(false);
     const route = useRouter();
@@ -49,6 +51,7 @@ const Saksi: React.FC = () => {
                 <div className="col-lg-12">
                     <div className="card">
                         <div className="card-body">
+                            {totalTps}
                             <table className="table">
                                 <thead>
                                     <tr style={{ fontWeight: "bold" }}>
@@ -57,22 +60,29 @@ const Saksi: React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.map((list, index) => (
-                                        <tr key={`${index}`}>
-                                            <td>{index + 1}</td><td>{list.kelurahan}</td>
-                                            <td>
-                                                {list.tps.map((data, index) => (
-                                                    <button key={`${index}`} className={`btn ${data.isData != "ADA" ? "btn-danger" : "btn-success"}`}
-                                                        onClick={() => {
-                                                            route.push(`/saksi/${list.id_kelurahan}/${data.id_tps}/tps.html`)
-                                                        }}
-                                                        style={{ margin: "5px" }}>
-                                                        TPS {data.tps}
-                                                    </button>
-                                                ))}
-                                            </td>
-                                        </tr>
-                                    ))}
+                                    {
+
+                                        data.map((list, index) => {
+                                            return (
+                                                <tr key={`${index}`}>
+                                                    <td>{index + 1}</td><td>{list.kelurahan}</td>
+                                                    <td>
+                                                        {list.tps.map((data, index) => {
+
+                                                            return (
+                                                                <button key={`${index}`} className={`btn ${data.isData != "ADA" ? "btn-danger" : "btn-success"}`}
+                                                                    onClick={() => {
+                                                                        route.push(`/saksi/${list.id_kelurahan}/${data.id_tps}/tps.html`)
+                                                                    }}
+                                                                    style={{ margin: "5px" }}>
+                                                                    TPS {data.tps} {data.checklist == "Y" && (<i style={{ color: "#FF0008" }} className="fa fa-check" />)}
+                                                                </button>
+                                                            )
+                                                        })}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
 
                                 </tbody>
                             </table>

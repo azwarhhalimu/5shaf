@@ -28,7 +28,7 @@ const Saksi: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const route = useRouter()
 
-    const [kelTps, setKelTps] = useState<{ tps: string, kelurahan: string }>();
+    const [kelTps, setKelTps] = useState<{ tps: string, kelurahan: string, check: string; }>();
     const [data, setData] = useState<cdata[]>([]);
 
     const [dataSaksi, setDataSaksi] = useState<c[]>([]);
@@ -64,6 +64,16 @@ const Saksi: React.FC = () => {
         })
 
     }
+    const _checklist = () => {
+        axios.post(baseUrl('saksi/update-checklist'), queryString.stringify({
+            id_tps: id[3],
+        }))
+            .then((respon: AxiosResponse<any, any>) => {
+                if (respon.data.status == "ok") {
+                    alert('Data berhasil di checklist');
+                }
+            })
+    }
     const _deleteData = (id: string) => {
         const c = window.confirm("Apakah anda ingin menghapus data ini?");
         if (c) {
@@ -81,6 +91,8 @@ const Saksi: React.FC = () => {
                 setKelTps({
                     tps: respon.data.data.tps,
                     kelurahan: respon.data.data.kelurahan,
+                    check: respon.data.data.check,
+
                 });
             })
     }
@@ -260,6 +272,11 @@ const Saksi: React.FC = () => {
                     <button onClick={() => {
                         handleShowx();
                     }} className="btn btn-primary">Update Suara</button>
+                    {" "}
+                    <button {...(kelTps?.check == "Y" && { disabled: true })} onClick={() => {
+                        _checklist();
+                    }} className=" btn btn-success"><i className="fa fa-check" /> Ceklist</button>
+                    <Height height={20} />
                     <div className="card">
                         <div className="card-body">
                             <table className="table">
