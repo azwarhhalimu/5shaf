@@ -24,6 +24,7 @@ interface cdata {
 }
 const Saksi: React.FC = () => {
 
+    const [total, setTotal] = useState(0);
     const [loadingData, setLoadingData] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const route = useRouter()
@@ -187,8 +188,9 @@ const Saksi: React.FC = () => {
             id_tps: id[3],
             id_kelurahan: id[2],
         })).then((respon: AxiosResponse<any, any>) => {
-            setList_suara(respon.data.data);
+            setList_suara(respon.data.data.list_data);
             setLoadingData(false);
+            setTotal(respon.data.data.total);
         })
     }
 
@@ -295,6 +297,9 @@ const Saksi: React.FC = () => {
                                         </tr>
                                     ))}
 
+                                    <tr>
+                                        <td></td><td style={{ textAlign: "right" }}>Total</td><td>{total.toLocaleString()}</td>
+                                    </tr>
                                 </tbody>
 
                             </table>
