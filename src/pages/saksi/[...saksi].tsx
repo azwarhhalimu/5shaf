@@ -297,7 +297,7 @@ const Saksi: React.FC = () => {
                                         </tr>
                                     ))}
 
-                                    <tr>
+                                    <tr style={{ fontWeight: "bold" }}>
                                         <td></td><td style={{ textAlign: "right" }}>Total</td><td>{total.toLocaleString()}</td>
                                     </tr>
                                 </tbody>
