@@ -7,20 +7,27 @@ import { useContext, useEffect } from 'react';
 
 const inter = Inter({ subsets: ['latin'] })
 import { useMyContext } from '@/interface/myContext';
+import axios, { AxiosResponse } from 'axios';
 export default function Home() {
   const { updateMenu } = useMyContext();
+  const _getData = () => {
+    const xdata = []
+    axios.get('https://sirekap-obj-data.kpu.go.id/pemilu/caleg/partai/747203.json')
+      .then((respon: AxiosResponse<any, any>) => {
+        const data = (Object.values(Object.values(respon.data)));
+        data.flatMap((list: any, index) => {
+          console.log(list.nama);
+        })
+
+      })
+  }
 
   useEffect(() => {
     updateMenu("beranda");
+    _getData();
   }, []);
   return <>
-    <center>
-      Isi dulu data nya sambil sy selsaikan sistimnya.
-      <br />
-      1. Isi dulu dulu master Data_relawan<br />
-      2. di menu tps. untuk menambahkan tps pada kelurahan. pilih  kelurahan yang ingin du buatkan tps nya.<br />
-      3. Isi data calon pendukung.
-    </center>
+
   </>
 
 }
