@@ -78,7 +78,7 @@ const Header: React.FC = () => {
                 </Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" href="/pemilu/quick-qount.html">
+                <Link className="nav-link" href="/pemilu/quick-count.html">
                     <i className="fas fa-fw fa-palette" />
                     <span>Layar Menitor</span>
                 </Link>
