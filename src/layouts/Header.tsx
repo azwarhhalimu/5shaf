@@ -22,7 +22,7 @@ const Header: React.FC = () => {
                     <span>Dashboard <span style={{ fontSize: "8px" }} className="badge badge-danger">Dev</span></span>
                 </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
                 <Link {...menu == "statistik" && { style: { color: "red", } }} className="nav-link" href="/data-statistik.html">
                     <i className="fas fa-fw fa-tachometer-alt" />
                     <span>Data Statistik</span>
@@ -34,31 +34,31 @@ const Header: React.FC = () => {
                     <i className="fas fa-fw fa-tachometer-alt" />
                     <span>Data Report <span style={{ fontSize: "8px" }} className="badge badge-danger">Dev</span></span>
                 </Link>
-            </li> */}
+            </li>
 
 
             <hr className="sidebar-divider" />
             <div className="sidebar-heading">
                 Menu
             </div>
-            {/* <li className="nav-item">
+            <li className="nav-item">
                 <Link {...menu == "pendukung" && { style: { color: "red", } }} className="nav-link" href="/data-calon-pendukung.html">
                     <i className="fas fa-fw fa-palette" />
                     <span>Data Calon Pendukung</span>
                 </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
                 <Link {...menu == "tps" && { style: { color: "red", } }} className="nav-link" href="/data-tps.html">
                     <i className="fas fa-fw fa-palette" />
                     <span>Master Data TPS</span>
                 </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
                 <Link  {...menu == "relawan" && { style: { color: "red", } }} className="nav-link" href="/data-relawan.html">
                     <i className="fas fa-fw fa-palette" />
                     <span>Master Relawan</span>
                 </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
                 <Link {...menu == "saksi" && { style: { color: "red", } }} className="nav-link" href="/saksi-tps.html">
                     <i className="fas fa-fw fa-palette" />
@@ -83,12 +83,12 @@ const Header: React.FC = () => {
                     <span>Layar Menitor</span>
                 </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
                 <Link {...menu == "duplikat-data" && { style: { color: "red", } }} className="nav-link" href="/duplikat-data.html">
                     <i className="fas fa-fw fa-palette" />
                     <span>Analisi Duplikat Data</span>
                 </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
                 <Link className="nav-link" onClick={() => {
 
